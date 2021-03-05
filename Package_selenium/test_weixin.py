@@ -2,15 +2,17 @@ import json
 from time import sleep
 
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestWeixin:
     def setup(self):
+        # 声明chrome参数
         chrome_arg = webdriver.ChromeOptions()
         chrome_arg.debugger_address = '127.0.0.1:9222'
-        # self.driver = webdriver.Chrome(options=chrome_arg)
+        self.driver = webdriver.Chrome(options=chrome_arg)
         # chrome - -remote - debugging - port = 9222
-        self.driver = webdriver.Chrome()
+        # self.driver = webdriver.Chrome()
         # self.driver.maximize_window()
         self.driver.implicitly_wait(5)
 
@@ -63,3 +65,28 @@ class TestWeixin:
         for i in cookie:
             self.driver.add_cookie(i)
         self.driver.refresh()
+
+    def test_address(self):
+        self.driver.get('https://work.weixin.qq.com/wework_admin/frame#index')
+        self.driver.find_elements_by_xpath('//*[@class="qui_btn ww_btn js_add_member"]')[-1].click()
+        print(len(self.driver.find_elements_by_xpath('//*[@class="qui_btn ww_btn js_add_member"]')))
+
+        # 点击添加成员按钮,不可交互原因，1被遮挡，2有多个需要人工挑选合适的元素find_elements()[1]
+        # 等待时间不够，可点击就是隐式等待的条件，但是逻辑还没有出来
+        def wait_name(driver):
+            self.driver.find_element_by_xpath(
+                '//*[@id="js_contacts311"]/div/div[2]/div/div[2]/div[3]/div[9]/a[1]').click()
+            eles = self.driver.find_elements_by_xpath('//*[@id="username"]')
+            return len(eles) > 0
+
+        WebDriverWait(self.driver, 10).until(wait_name)
+
+        # self.driver.find_element_by_xpath('//*[@id="js_contacts87"]/div/div[2]/div/div[2]/div[3]/div[1]/a[1]').click()
+        # 输入姓名
+        self.driver.find_element_by_xpath('//*[@id="username"]').send_keys('wangwei3')
+        # 输入账号
+        self.driver.find_element_by_xpath('//*[@id="memberAdd_acctid"]').send_keys('ww003')
+        # 输入手机号
+        self.driver.find_element_by_xpath('//*[@id="memberAdd_phone"]').send_keys('13611240803')
+        # 保存
+        self.driver.find_element_by_xpath('//*[@class="qui_btn ww_btn js_btn_save"]').click()
