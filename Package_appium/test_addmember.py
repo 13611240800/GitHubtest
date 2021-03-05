@@ -11,8 +11,8 @@ class TestAddMember:
             "appPackage": "com.tencent.wework",
             "appActivity": ".launch.LaunchSplashActivity",
             "noReset": True,
-            # "dontStopAppOnReset": True,
-            # "skipDeviceInitialization": True,
+            "dontStopAppOnReset": True,
+            "skipDeviceInitialization": True,
             "unicodeKeyboard": True,
             "resetKeyboard": True,
             # 执行过程中完成appium设置，动态等待时长
