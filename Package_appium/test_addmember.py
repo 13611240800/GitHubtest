@@ -16,7 +16,8 @@ class TestAddMember:
             "unicodeKeyboard": True,
             "resetKeyboard": True,
             # 执行过程中完成appium设置，动态等待时长
-            "settings[waitForIdleTimeout]": 1
+            "settings[waitForIdleTimeout]": 1,
+            "automationName": "uiautomator2"
         }
 
         # 客户端和appium server端的链接
@@ -45,13 +46,17 @@ class TestAddMember:
         # 点击通讯录
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
         # 点击添加成员
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']").click()
+        # self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']").click()
+        self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector()'
+                                                               '.scrollable(true).instance(0))'
+                                                               '.scrollIntoView(new UiSelector()'
+                                                               '.text("添加成员").instance(0));').click()
         # 选择手动添加
         self.driver.find_element(MobileBy.XPATH, "//*[@text='手动输入添加']").click()
         # 输入用户名、手机号，进行保存
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/b7m']").send_keys('王一为')
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/fwi']").send_keys(
-            '13611240806')
+            '13611240808')
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存']").click()
         # 查找“添加成功”toast弹框
         print(self.driver.find_element(MobileBy.XPATH, "//*[contains(@text,'成功')]").text)
