@@ -1,0 +1,17 @@
+desirecaps:
+  platformName: "android"
+  deviceName: "127.0.0.1:7555"
+  appPackage: "com.tencent.wework"
+  appActivity: ".launch.LaunchSplashActivity"
+  noReset: "True"
+  dontStopAppOnReset: "True"
+  skipServerInstallation: "True"
+  skipDeviceInitialization: "True"
+  unicodeKeyboard: "True"
+  resetKeyboard: "True"
+  settings[waitForIdleTimeout]: 1
+  automationName: "uiautomator2"
+
+server:
+  ip: 127.0.0.1
+  port: 4723

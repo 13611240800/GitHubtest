@@ -1,0 +1,17 @@
+INFO:root:find and click方法
+INFO:root:查找xpath,//*[@text='通讯录']
+INFO:root:滑动查找
+INFO:root:查找时
+INFO:root:set implicitly=1
+INFO:root:找到后
+INFO:root:set implicitly=5
+INFO:root:find and click方法
+INFO:root:查找xpath,//*[@text='手动输入添加']
+INFO:root:find and sendkeys方法
+INFO:root:查找xpath,//*[contains(@text,'姓名')]/../*[@text='必填'],输入值王一为
+INFO:root:find and sendkeys方法
+INFO:root:查找xpath,//*[contains(@text,'手机')]/..//*[@text='必填'],输入值13611240912
+INFO:root:find and click方法
+INFO:root:查找xpath,//*[@text='保存']
+INFO:root:find方法
+INFO:root:查找xpath,//*[contains(@text,'成功')]
